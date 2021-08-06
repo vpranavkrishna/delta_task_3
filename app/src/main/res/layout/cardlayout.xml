@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:layout_centerHorizontal="true">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+<ImageView
+    android:id="@+id/breedimage"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:src="@mipmap/ic_launcher"
+    android:scaleType="center"
+    />
+
+    <TextView
+        android:id="@+id/breed_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="breedname"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@id/breedimage"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+</RelativeLayout>

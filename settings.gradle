@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "delta_task_3"
