@@ -21,5 +21,4 @@ public interface ThedogApi {
     @Multipart
     @POST("v1/images")
     Call <ResponseBody> uploadImage(@Query("api_key") String key, @Part("original_filename") String imagename, @Part MultipartBody.Part image);
-//    Call <RequestBody> getuploadimage(@Query("api_key") String ApiKey, @Part MultipartBody.Part part ,@Part("somedata") RequestBody requestBody);w
 }

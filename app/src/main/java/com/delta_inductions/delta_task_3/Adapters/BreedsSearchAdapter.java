@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -101,12 +102,13 @@ public class BreedsSearchAdapter extends RecyclerView.Adapter<BreedsSearchAdapte
         private ImageView imageView;
         private TextView breedname;
         private ProgressBar progressBar;
-
+        private ImageButton star;
         public BreedViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.breedimage);
             breedname = itemView.findViewById(R.id.breed_name);
             progressBar = itemView.findViewById(R.id.progressbar);
+//            star = itemView.findViewById(R.id.star_icon);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

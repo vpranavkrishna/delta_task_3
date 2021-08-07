@@ -129,12 +129,8 @@ public class FavouritesActivity extends AppCompatActivity implements Onitemclick
         intent.putExtra("URL",fav.getImageURL());
         intent.putExtra("breedname",fav.getBreedname());
         intent.putExtra("fav",true);
+        intent.putExtra("position",position);
         startActivity(intent);
-    }
-
-    @Override
-    public void itemclicksearchfav(int position) {
-
     }
 
 }

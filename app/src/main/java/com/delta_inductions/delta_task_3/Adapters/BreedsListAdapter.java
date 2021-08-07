@@ -3,12 +3,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.delta_inductions.delta_task_3.R;
 import com.delta_inductions.delta_task_3.Model.Breeds;
 import com.squareup.picasso.Callback;
@@ -17,16 +17,13 @@ import java.util.ArrayList;
 
 public class BreedsListAdapter extends RecyclerView.Adapter<BreedsListAdapter.BreedViewHolder> {
     private ArrayList<Breeds> BreedList;
-    private ArrayList<Breeds> BreedListFull;
     private Context mContext;
     private Onitemclicklistener listener;
 
     public BreedsListAdapter(Context context, ArrayList<Breeds> breedsList) {
         mContext = context;
         BreedList = breedsList;
-        BreedListFull  = new ArrayList<>(BreedList);
     }
-
     @NonNull
     @Override
     public BreedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +33,7 @@ public class BreedsListAdapter extends RecyclerView.Adapter<BreedsListAdapter.Br
     }
     @Override
     public void onBindViewHolder(@NonNull BreedViewHolder holder, int position) {
-         Breeds currentbreed = BreedList.get(position);
+        Breeds currentbreed = BreedList.get(position);
         holder.breedname.setText(currentbreed.getName());
         Picasso.get().load(currentbreed.getImage().getUrl()).fit().centerInside().into(holder.imageView, new Callback() {
             @Override
@@ -50,7 +47,7 @@ public class BreedsListAdapter extends RecyclerView.Adapter<BreedsListAdapter.Br
                 holder.breedname.setText("Sorry error has occured");
             }
         });
-}
+    }
     @Override
     public int getItemCount() {
         return BreedList.size();
@@ -60,12 +57,13 @@ public class BreedsListAdapter extends RecyclerView.Adapter<BreedsListAdapter.Br
         private ImageView imageView;
         private TextView breedname;
         private ProgressBar progressBar;
-
+        private ImageButton star;
         public BreedViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.breedimage);
             breedname = itemView.findViewById(R.id.breed_name);
             progressBar = itemView.findViewById(R.id.progressbar);
+//            star = itemView.findViewById(R.id.star_icon);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

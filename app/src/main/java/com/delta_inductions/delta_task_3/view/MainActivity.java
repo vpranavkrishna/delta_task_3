@@ -35,7 +35,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements Onitemclicklistener {
-    private static final int REQUEST_GET_SINGLE_FILE = 1034;
     private  RecyclerView recyclerView;
     private ArrayList breedslist = new ArrayList();
     private BreedsListAdapter breedsListAdapter;
@@ -49,9 +48,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
     private ThedogApi thedogApi;
     private static final String BASE_URL = "https://api.thedogapi.com/";
     private static final String TAG ="Mainactivity";
-    private Uri selectedImageUri;
-    private String input;
-    private boolean submitted = false;
     private boolean isScrolling = false;
     private int page =0;
     private ProgressBar progress;
@@ -69,10 +65,7 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
                 loadingDialog.dismissdialog();
             }
         },1500);
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         progress = findViewById(R.id.progress);
         recyclerView = findViewById(R.id.breedsList);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -125,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
                 breedsSearchList = new ArrayList(breeds);
                     breedsSearchAdapter = new BreedsSearchAdapter(MainActivity.this, breedsSearchList);
                     breedsSearchAdapter.setOnitemclicklistenerSearch((Onitemclicklistener) MainActivity.this);
-//                    recyclerView.setAdapter(breedsSearchAdapter);
             }
 
             @Override
@@ -194,15 +186,10 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
     private void data (int position)
     {
         Breeds clickeditem = (Breeds) breedsSearchList.get(position);
-        if(!(clickeditem.getOrigin()==null || clickeditem.getOrigin().trim().length()==0))
-            detailtext = "Weight :"+clickeditem.getWeight().getMetric()+"Kg"+"\n"+"Height :"+clickeditem.getHeight().getMetric()+"cm"+"\n"+
-                    "Name :"+clickeditem.getName()+"\n"+"Bred_for :"+clickeditem.getBred_for()+"\n"+"Breed Group :"+clickeditem.getBreed_group()+"\n"+
+            detailtext = "Name :"+clickeditem.getName()+"\n"+"Weight :"+clickeditem.getWeight().getMetric()+"Kg"+"\n"+"Height :"+clickeditem.getHeight().getMetric()+"cm"+"\n"+
+                    "Bred_for :"+clickeditem.getBred_for()+"\n"+"Breed Group :"+clickeditem.getBreed_group()+"\n"+
                     "Life Span :"+clickeditem.getLife_span()+"\n"+"Temperament :"+clickeditem.getTemperament()+"\n"+"Origin :"+clickeditem.getOrigin();
-        else
-            detailtext = "Weight :"+clickeditem.getWeight().getMetric()+"Kg"+"\n"+"Height :"+clickeditem.getHeight().getMetric()+"cm"+"\n"+
-                    "Name :"+clickeditem.getName()+"\n"+"Bred_for :"+clickeditem.getBred_for()+"\n"+"Breed Group :"+clickeditem.getBreed_group()+"\n"+
-                    "Life Span :"+clickeditem.getLife_span()+"\n"+"Temperament :"+clickeditem.getTemperament();
-         URL = String.valueOf(clickeditem.getImage().getUrl());
+        URL = String.valueOf(clickeditem.getImage().getUrl());
          breedname = clickeditem.getName();
     }
 
