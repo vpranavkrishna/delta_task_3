@@ -1,6 +1,6 @@
 package com.delta_inductions.delta_task_3.Database;
 import android.content.Context;
-import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -19,7 +19,7 @@ public abstract class FavouritesDatabase extends RoomDatabase {
         }
         return instance;
     }
-    private static RoomDatabase.Callback roomcallback = new RoomDatabase.Callback(){
+    private static Callback roomcallback = new Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);

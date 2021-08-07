@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.delta_inductions.delta_task_3.R;
 
 public class LoadingDialog {
-
      private AlertDialog alertDialog;
      private Activity activity;
     public LoadingDialog(Activity activity)

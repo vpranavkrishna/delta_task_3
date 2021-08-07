@@ -6,8 +6,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.delta_inductions.delta_task_3.view.FavouritesActivity;
-
 import java.util.List;
 
 @Dao

@@ -1,4 +1,15 @@
 package com.delta_inductions.delta_task_3.view;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -8,24 +19,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import com.delta_inductions.delta_task_3.Adapters.FavouritesListAdapter;
-import com.delta_inductions.delta_task_3.Adapters.Onitemclicklistener;
 import com.delta_inductions.delta_task_3.Adapters.Onitemclicklistnerfav;
 import com.delta_inductions.delta_task_3.Database.Favourites;
 import com.delta_inductions.delta_task_3.Database.FavouritesViewModel;
-import com.delta_inductions.delta_task_3.ListMainactivity;
 import com.delta_inductions.delta_task_3.R;
 
 import java.util.ArrayList;
@@ -117,8 +114,8 @@ public class FavouritesActivity extends AppCompatActivity implements Onitemclick
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.menubreed )
-            startActivity(new Intent(FavouritesActivity.this,MainActivity.class));
+        if(item.getItemId()== R.id.menubreed )
+            startActivity(new Intent(FavouritesActivity.this, MainActivity.class));
         return super.onOptionsItemSelected(item);
     }
 

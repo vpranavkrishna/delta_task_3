@@ -15,12 +15,6 @@
         android:theme="@style/Theme.Delta_task_3">
         <activity android:name=".view.ImgaeUploadAndAnalysis"></activity>
         <activity
-            android:name=".view.FavouritesActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.DogDetail"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -33,6 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.DogDetail"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.FavouritesActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

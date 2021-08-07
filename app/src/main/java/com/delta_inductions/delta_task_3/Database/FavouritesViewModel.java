@@ -1,6 +1,5 @@
 package com.delta_inductions.delta_task_3.Database;
 import android.app.Application;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;

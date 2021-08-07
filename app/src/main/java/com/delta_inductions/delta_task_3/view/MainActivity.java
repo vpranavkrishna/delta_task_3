@@ -2,8 +2,6 @@ package com.delta_inductions.delta_task_3.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
@@ -18,15 +16,10 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import com.delta_inductions.delta_task_3.Adapters.BreedsSearchAdapter;
-import com.delta_inductions.delta_task_3.Adapters.FavouritesListAdapter;
 import com.delta_inductions.delta_task_3.Adapters.Onitemclicklistener;
 import com.delta_inductions.delta_task_3.Adapters.Onitemclicklistnerfav;
 import com.delta_inductions.delta_task_3.Database.Favourites;
-import com.delta_inductions.delta_task_3.Database.FavouritesViewModel;
-import com.delta_inductions.delta_task_3.ListMainactivity;
 import com.delta_inductions.delta_task_3.R;
 import com.delta_inductions.delta_task_3.Adapters.BreedsListAdapter;
 import com.delta_inductions.delta_task_3.Model.Breeds;
@@ -44,7 +37,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements Onitemclicklistener {
     private static final int REQUEST_GET_SINGLE_FILE = 1034;
     private  RecyclerView recyclerView;
-    private boolean isfav = false;
     private ArrayList breedslist = new ArrayList();
     private BreedsListAdapter breedsListAdapter;
     private BreedsSearchAdapter breedsSearchAdapter;
@@ -65,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
     private ProgressBar progress;
     private Onitemclicklistnerfav listner;
     private ArrayList<Favourites> FavouritesList;
-    private FavouritesViewModel favouritesViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +69,10 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
                 loadingDialog.dismissdialog();
             }
         },1500);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         progress = findViewById(R.id.progress);
         recyclerView = findViewById(R.id.breedsList);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -194,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
         intent.putExtra("detailtext",detailtext);
         intent.putExtra("URL",URL);
         intent.putExtra("breedname",breedname);
-        intent.putExtra("checkfav",isfav);
         startActivity(intent);
     }
 
@@ -211,25 +204,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
                     "Life Span :"+clickeditem.getLife_span()+"\n"+"Temperament :"+clickeditem.getTemperament();
          URL = String.valueOf(clickeditem.getImage().getUrl());
          breedname = clickeditem.getName();
-
-//         ArrayList<Favourites> favlist = new ArrayList<>(ListMainactivity.FavouritesList);
-//        favouritesViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(FavouritesViewModel .class);
-//        favouritesViewModel.getAllNotes().observe(this, new Observer<List<Favourites>>() {
-//            @Override
-//            public void onChanged(List<Favourites> favourites) {
-//                FavouritesList = new ArrayList(favourites);
-//            }
-//        });
-//        if(FavouritesList.size()>0) {
-//         for(Favourites fav : FavouritesList)
-//         {
-//             if(fav.getBreedname()==clickeditem.getName())
-//             {
-//                  isfav= true;
-//                  break;
-//             }
-//         }
-//        }
     }
 
     @Override
