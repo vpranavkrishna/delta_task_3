@@ -17,5 +17,8 @@
         android:id="@+id/menufav"
         android:title="Favourites"
         app:showAsAction="collapseActionView"/>
-
+    <item
+        android:id="@+id/upload"
+        android:title="Upload"
+        app:showAsAction="collapseActionView"/>
 </menu>

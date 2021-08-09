@@ -114,8 +114,14 @@ public class FavouritesActivity extends AppCompatActivity implements Onitemclick
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()== R.id.menubreed )
-            startActivity(new Intent(FavouritesActivity.this, MainActivity.class));
+        switch (item.getItemId()) {
+            case R.id.menubreed:
+                startActivity(new Intent(FavouritesActivity.this, MainActivity.class));
+                break;
+            case R.id.upload:
+                startActivity(new Intent(this,ImgaeUploadAndAnalysis.class));
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 

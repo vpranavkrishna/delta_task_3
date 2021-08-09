@@ -138,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
 
         return (retrofit.create(ThedogApi.class));
     }
-
     public void getdogsout(int page)
     {
         progress.setVisibility(View.VISIBLE);
@@ -220,9 +219,16 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.menufav )
-        {
-            startActivity(new Intent(this, FavouritesActivity.class));
+        switch (item.getItemId()) {
+            case R.id.menufav:
+                startActivity(new Intent(this, FavouritesActivity.class));
+                break;
+
+            case R.id.upload:
+                    startActivity(new Intent(this, ImgaeUploadAndAnalysis.class));
+                    break;
+
+
         }
         return super.onOptionsItemSelected(item);
     }

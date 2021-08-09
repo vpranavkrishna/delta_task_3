@@ -31,7 +31,6 @@ public class DogDetail extends AppCompatActivity {
     private ImageButton imageButton;
     private ImageButton share;
     private String detailtext;
-    private boolean clickedonce = false;
     private String breedname;
     private String URL;
     private boolean isfav = false;
@@ -53,7 +52,6 @@ public class DogDetail extends AppCompatActivity {
             public void onChanged(List<Favourites> favourites) {
                 favouritesArrayList = new ArrayList<>(favourites);
                 setstar();
-
             }
         });
         if (getIntent().hasExtra("fav")) {
@@ -83,7 +81,6 @@ public class DogDetail extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!clickedonce) {
                         if (!isfav) {
                             Toast.makeText(DogDetail.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
                             Favourites favourites = new Favourites(detailtext, URL, breedname);
@@ -91,8 +88,14 @@ public class DogDetail extends AppCompatActivity {
                             imageButton.setBackgroundResource(R.drawable.ic_baseline_star_24);
                             Log.d(TAG, "onClick: " + isfav);
                         }
-                        clickedonce = true;
-                    }
+                     else {
+                            Toast.makeText(DogDetail.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
+                            favouritesViewModel.delete(favouritesArrayList.get(position));
+                            favouritesArrayList.remove(position);
+                            imageButton.setBackgroundResource(R.drawable.ic_baseline_star_border_24);
+                            favtext.setText("Press the star to add to favourites");
+                            isfav= false;
+                        }
                 }
             });
             share.setOnClickListener(new View.OnClickListener() {
@@ -114,15 +117,15 @@ public class DogDetail extends AppCompatActivity {
                 private void setstar() {
                     for (int i = 0; i < favouritesArrayList.size(); i++) {
                         if (favouritesArrayList.get(i).getBreedname().equals(breedname)) {
+                            position = i;
                             isfav = true;
-                            imageButton.setBackgroundResource(R.drawable.ic_baseline_star_24);
                             break;
                         }
 
                     }
                     if (isfav) {
                         imageButton.setBackgroundResource(R.drawable.ic_baseline_star_24);
-                        favtext.setText("Check Favourites");
+                        favtext.setText("Press the star again to remove from favourites");
                     }
                 }
             }
