@@ -23,6 +23,9 @@ import android.widget.Toast;
 import com.delta_inductions.delta_task_3.Api.ThedogApi;
 import com.delta_inductions.delta_task_3.R;
 import com.delta_inductions.delta_task_3.Utils;
+
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import okhttp3.MediaType;
@@ -92,12 +95,17 @@ public class ImgaeUploadAndAnalysis extends AppCompatActivity implements View.On
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
-                    if (response.isSuccessful())
-                    {
+                    if (response.isSuccessful()) {
                         Toast.makeText(ImgaeUploadAndAnalysis.this, "Successfully uploaded ", Toast.LENGTH_SHORT).show();
                     }
-
-                    Log.d(TAG, "onResponse: "+response.code());
+                    else {
+                        try {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string());
+                            Toast.makeText(ImgaeUploadAndAnalysis.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(ImgaeUploadAndAnalysis.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }//                   Log.d(TAG, "onResponse: "+response.code()+","+response.body()+","+response.errorBody().toString());
+                    }
                 }
 
                 @Override
