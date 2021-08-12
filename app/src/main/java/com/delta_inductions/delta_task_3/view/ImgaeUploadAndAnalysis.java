@@ -94,12 +94,17 @@ public class ImgaeUploadAndAnalysis extends AppCompatActivity implements View.On
         {
             File file = new File(filepath);
             RequestBody requestFile =
-                    RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part part =
-                    MultipartBody.Part.createFormData("file", "dogimage", requestFile);
-            RequestBody sub_id =
-                    RequestBody.create(MediaType.parse("text/plain"), "uploadedimage1");
-            Call call = (Call) thedogapi.uploadimage("4998955b-fd71-48df-b0a3-e59382b293e8",part,sub_id);
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+// MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+// add another part within the multipart request
+//            RequestBody fullName =
+//                    RequestBody.create(MediaType.parse("multipart/form-data"), "Your Name");
+
+            Call call = (Call) thedogapi.uploadimage("4998955b-fd71-48df-b0a3-e59382b293e8",body);
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
@@ -108,16 +113,26 @@ public class ImgaeUploadAndAnalysis extends AppCompatActivity implements View.On
                     }
                     else {
                         try {
+//                            Log.d(TAG, "onResponse: responsebody "+String.valueOf(response.body()));
+//                            Log.d(TAG, "onResponse: responsecode "+response.code());
+//                            Log.d(TAG, "onResponse: errorbody "+response.errorBody());
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            Toast.makeText(ImgaeUploadAndAnalysis.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "onResponse: "+jObjError.getString("message"));
+                            Log.d(TAG, "onResponse: "+jObjError.getString("level"));
+                            Log.d(TAG, "onResponse: "+jObjError.getString("status" ));
+//                            Log.d(TAG, "onResponse: "+jObjError.getJSONObject("level").toString());
+//                            Log.d(TAG, "onResponse: "+jObjError.getJSONObject("status").toString());
+//                            Toast.makeText(ImgaeUploadAndAnalysis.this, jObjError.getJSONObject("message").toString(), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
-                            Toast.makeText(ImgaeUploadAndAnalysis.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                            Toast.makeText(ImgaeUploadAndAnalysis.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "onResponse: "+e.getMessage());
                         }//                   Log.d(TAG, "onResponse: "+response.code()+","+response.body()+","+response.errorBody().toString());
                     }
                 }
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
+                    Log.d(TAG, "onFailure: "+"failure");
                     Log.d(TAG, "onFailure: "+t.getMessage());
 
                 }
