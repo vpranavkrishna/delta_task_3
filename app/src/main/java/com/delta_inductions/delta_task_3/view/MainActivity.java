@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements Onitemclicklisten
             }
         },1500);
         setContentView(R.layout.activity_main);
+        setTitle("Breeds");
         progress = findViewById(R.id.progress);
         recyclerView = findViewById(R.id.breedsList);
         LinearLayoutManager manager = new LinearLayoutManager(this);

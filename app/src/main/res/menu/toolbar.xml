@@ -10,7 +10,7 @@
     />
     <item
         android:id="@+id/menubreed"
-        android:title="BreedsList"
+        android:title="Breeds"
         app:showAsAction="collapseActionView"
         />
     <item

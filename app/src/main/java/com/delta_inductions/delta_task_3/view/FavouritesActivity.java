@@ -46,6 +46,7 @@ public class FavouritesActivity extends AppCompatActivity implements Onitemclick
             }
         },1500);
         setContentView(R.layout.activity_favourites);
+        setTitle("Favourites");
         recyclerView = findViewById(R.id.favrecyclerview);
         manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);

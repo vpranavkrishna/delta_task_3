@@ -1,6 +1,9 @@
 package com.delta_inductions.delta_task_3.view;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentUris;
@@ -15,7 +18,11 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -54,6 +61,7 @@ public class ImgaeUploadAndAnalysis extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imgae_upload_and_analysis);
+        setTitle("Upload");
        thedogapi = getretrofit();
         select = findViewById(R.id.selectbutton);
         upload = findViewById(R.id.uploadbutton);
@@ -251,5 +259,23 @@ public class ImgaeUploadAndAnalysis extends AppCompatActivity implements View.On
         private static boolean isDownloadsDocument(Uri uri) {
             return "com.android.providers.downloads.documents".equals(uri.getAuthority());
         }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menubreed:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.menufav:
+                startActivity(new Intent(this,FavouritesActivity
+                        .class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     }
