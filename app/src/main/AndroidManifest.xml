@@ -13,15 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Delta_task_3">
-        <activity android:name=".view.ImgaeUploadAndAnalysis"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity android:name=".view.Result"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".view.ImgaeUploadAndAnalysis"></activity>
+        <activity
+            android:name=".view.ImgaeUploadAndAnalysis"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".view.MainActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"
@@ -32,10 +32,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.DogDetail"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.FavouritesActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.DogDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.FavouritesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
